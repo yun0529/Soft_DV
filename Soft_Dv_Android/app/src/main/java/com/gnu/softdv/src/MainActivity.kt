@@ -3,28 +3,66 @@ package com.gnu.softdv.src
 import android.os.Bundle
 import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
+import com.gnu.softdv.R
 import com.gnu.softdv.config.BaseActivity
 import com.gnu.softdv.databinding.ActivityMainBinding
+import com.gnu.softdv.src.event.EventFragment
+import com.gnu.softdv.src.home.HomeFragment
 import com.gnu.softdv.src.main.BannerAdapter
 import com.gnu.softdv.src.main.model.banner
+import com.gnu.softdv.src.manage.ManageFragment
+import com.gnu.softdv.src.search.SearchFragment
+import com.gnu.softdv.src.setting.SettingFragment
 import okhttp3.internal.notifyAll
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
-    private var bannerSet = arrayListOf<banner>()
-    private lateinit var vpAdapter :ViewPager2
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        vpAdapter = binding.vpBanner
-        bannerSet.add(banner("https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"))
-        bannerSet.add(banner("https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"))
-        bannerSet.add(banner("https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"))
-        bannerSet.add(banner("https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"))
-        bannerSet.add(banner("https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"))
 
-        Log.d("test",bannerSet.size.toString())
-        vpAdapter.adapter = BannerAdapter(this,bannerSet)
-        vpAdapter.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_frm, HomeFragment())
+            .commitAllowingStateLoss()
+
+        binding.mainBnv.setOnItemSelectedListener{ item ->
+            when (item.itemId) {
+
+                R.id.home -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, HomeFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+
+                R.id.event -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, EventFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.manage -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, ManageFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.search -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, SearchFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+                R.id.setting -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_frm, SettingFragment())
+                        .commitAllowingStateLoss()
+                    return@setOnItemSelectedListener true
+                }
+            }
+            false
+        }
     }
 
 }
