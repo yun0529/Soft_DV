@@ -1,14 +1,19 @@
 package com.gnu.softdv.src.search
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gnu.softdv.R
-import com.gnu.softdv.databinding.ItemMainBannerBinding
 import com.gnu.softdv.databinding.ItemSearchResultBinding
+import com.gnu.softdv.src.MainActivity
+import com.gnu.softdv.src.home.GrowInfoFragment
 import com.gnu.softdv.src.search.model.SearchResult
+
 
 private lateinit var binding: ItemSearchResultBinding
 
@@ -37,8 +42,21 @@ class SearchAdapter (private val context: Context, private val dataSet: ArrayLis
     inner class ViewHolder(private val binding : ItemSearchResultBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data : SearchResult) {
-            binding.image.setImageResource(R.drawable.ic_launcher_background)
-            //Glide.with(context).load(data.img).into(binding.bannerImage)
+            Glide.with(context).load(data.image).into(binding.image)
+            binding.content.text = data.content
+            binding.name.text = data.name
+
+            binding.clItem.setOnClickListener {
+                val bundle = Bundle()
+                bundle.putString("key", "value")
+
+                val passBundleBFragment = GrowInfoFragment()
+                passBundleBFragment.arguments = bundle
+
+                (context as MainActivity).supportFragmentManager.beginTransaction()
+                    .add(R.id.main_frm, GrowInfoFragment())
+                    .commit()
+            }
         }
     }
 }

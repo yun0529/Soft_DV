@@ -17,10 +17,8 @@ import okhttp3.internal.notifyAll
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_frm, HomeFragment())

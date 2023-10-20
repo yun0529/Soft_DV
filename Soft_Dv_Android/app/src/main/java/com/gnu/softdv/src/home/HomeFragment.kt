@@ -16,12 +16,12 @@ class HomeFragment  : BaseFragment<FragmentHomeBinding>(
     FragmentHomeBinding::bind, R.layout.fragment_home
 ) {
     private var bannerSet = arrayListOf<banner>()
-    private lateinit var vpAdapter : ViewPager2
+    private lateinit var imageAdapter : ViewPager2
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vpAdapter = binding.vpBanner
+        imageAdapter = binding.vpBanner
         bannerSet.add(banner("https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"))
         bannerSet.add(banner("https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"))
         bannerSet.add(banner("https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"))
@@ -29,8 +29,8 @@ class HomeFragment  : BaseFragment<FragmentHomeBinding>(
         bannerSet.add(banner("https://image.utoimage.com/preview/cp872722/2022/12/202212008462_500.jpg"))
 
         Log.d("test",bannerSet.size.toString())
-        vpAdapter.adapter = BannerAdapter(requireContext(),bannerSet)
-        vpAdapter.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
+        imageAdapter.adapter = BannerAdapter(requireContext(),bannerSet)
+        imageAdapter.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding.dotsIndicator.setViewPager2(binding.vpBanner)
     }
 }
