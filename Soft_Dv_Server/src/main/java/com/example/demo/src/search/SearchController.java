@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 
+import static com.example.demo.config.BaseResponseStatus.EMPTY_OBJECT_RETURNED;
+
 //
 @Controller
 @RequestMapping("/app/search")
@@ -31,7 +33,11 @@ public class SearchController {
     public BaseResponse<ArrayList<SearchRes>> search(@RequestParam("input") String input){
         ArrayList<String> words = m._divideIntoWords(input);
         try{
-            return new BaseResponse(this.searchService.search(words));
+            ArrayList<SearchRes> result = this.searchService.search(words);
+            if(result.isEmpty()){
+                throw new BaseException(EMPTY_OBJECT_RETURNED);
+            }
+            return new BaseResponse(result);
         }catch (BaseException e){
             return new BaseResponse<>(e.getStatus());
         }
