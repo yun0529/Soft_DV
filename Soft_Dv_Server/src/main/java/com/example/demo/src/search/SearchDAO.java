@@ -2,6 +2,7 @@ package com.example.demo.src.search;
 
 import com.example.demo.src.search.object.DetailRes;
 import com.example.demo.src.search.object.SearchRes;
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -21,32 +22,34 @@ public class SearchDAO {
 
     public ArrayList<SearchRes> search(ArrayList<String> words) {
         ArrayList<SearchRes> result = new ArrayList<>();
-        String getIndexSql = "SELECT insectInfoIdx FROM InsectInfo WHERE scientificName = ? OR kind = ? OR sizeMax = ? OR lifeCycle = ? OR breedTip = ?";
+        String tempParam = "";
+
+
         Set<Integer> indexSet = new HashSet<>();
 
         for (String word : words) {
-            List<Integer> indexes = this.jdbcTemplate.query(getIndexSql,
-                    (rs, rowNum)  -> new Integer(
-                            rs.getInt("insectInfoIdx")
-                    ), word);
+            String getIndexSql = "SELECT insectInfoIdx FROM InsectInfo WHERE " +
+                    "scientificName LIKE '%"+word+"%' " +
+                    "OR kind LIKE '%"+word+"%'  " +
+                    "OR sizeMax LIKE '%"+word+"%'  " +
+                    "OR lifeCycle LIKE '%"+word+"%'  " +
+                    "OR breedTip LIKE '%"+word+"%' ";
+            List<Integer> indexes = this.jdbcTemplate.queryForList(getIndexSql,int.class);
             for (int i = 0; i < indexes.size(); i++) {
                 indexSet.add(indexes.get(i));
             }
         }
 
-        String getInfoSql = "SELECT kind, scientificName, image, lifeCycle FROM InsectInfo WHERE insectInfoIdx = ?";
+        String getInfoSql = "SELECT kind, scientificName, image FROM InsectInfo WHERE insectInfoIdx = ?";
         for (int index : indexSet){
             result.add(
-              this.jdbcTemplate.query(getInfoSql,
+              this.jdbcTemplate.queryForObject(getInfoSql,
                       (rs,rowNum) -> new SearchRes(
                               index,
                               rs.getString("kind"),
                               rs.getString("image"),
-                              "종명 : "+rs.getString("kind")
-                                      +", 학명 : "+rs.getString("scientificName")
-                                      +", 생애주기 : "+rs.getString("lifeCycle")
-                                      +", ..."
-                      ),index).get(0)
+                              rs.getString("scientificName")
+                      ),index)
             );
         }
         return result;

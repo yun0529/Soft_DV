@@ -15,6 +15,6 @@ public class SearchRes {
     private int index;
     private String kind;
     private String image;
-    private String desc;
+    private String scientificName;
 
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 
@@ -25,8 +26,9 @@ public class SearchController {
         this.searchProvider = searchProvider;
     }
 
+    @ResponseBody
     @GetMapping("")
-    public BaseResponse<ArrayList<SearchRes>> search(@RequestParam String input){
+    public BaseResponse<ArrayList<SearchRes>> search(@RequestParam("input") String input){
         ArrayList<String> words = m._divideIntoWords(input);
         try{
             return new BaseResponse(this.searchService.search(words));
@@ -35,8 +37,9 @@ public class SearchController {
         }
     }
 
+    @ResponseBody
     @GetMapping("/detail")
-    public BaseResponse<DetailRes> detail(@RequestParam int insectInfoIdx){
+    public BaseResponse<DetailRes> detail(@RequestParam("idx") int insectInfoIdx){
         try{
             return new BaseResponse(this.searchService.detail(insectInfoIdx));
         }catch (BaseException e){
