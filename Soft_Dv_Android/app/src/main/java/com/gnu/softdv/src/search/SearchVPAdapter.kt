@@ -29,4 +29,9 @@ class SearchVPAdapter (manager: FragmentManager): FragmentPagerAdapter(manager) 
         titleList.add(title)
     }
 
+//    fun changeFragment(fragment: Fragment, position: Int){
+//        fragmentList.add(fragment)
+//        titleList.add(title)
+//    }
+
 }

@@ -1,7 +1,11 @@
 package com.gnu.softdv.src
 
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.util.Base64
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.viewpager2.widget.ViewPager2
 import com.gnu.softdv.R
 import com.gnu.softdv.config.BaseActivity
@@ -14,6 +18,7 @@ import com.gnu.softdv.src.manage.ManageFragment
 import com.gnu.softdv.src.search.SearchFragment
 import com.gnu.softdv.src.setting.SettingFragment
 import okhttp3.internal.notifyAll
+import java.security.MessageDigest
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 

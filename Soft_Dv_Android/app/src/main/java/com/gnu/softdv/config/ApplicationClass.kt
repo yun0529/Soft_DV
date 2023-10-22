@@ -9,11 +9,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class ApplicationClass : Application(){
-    val API_URL = ""
+    val API_URL = "https://gnusoftdev.shop/"
 
     companion object{
         lateinit var sDB : SharedPreferences
-
+        lateinit var editor : SharedPreferences.Editor
         //base retrofit
         lateinit var retrofit: Retrofit
         // JWT Token Header 키 값
@@ -23,7 +23,9 @@ class ApplicationClass : Application(){
     override fun onCreate() {
         super.onCreate()
         sDB = applicationContext.getSharedPreferences("softDV", MODE_PRIVATE)
-
+        editor = sDB.edit()
+        // 레트로핏 인스턴스 생성
+        initRetrofitInstance()
     }
 
     private fun initRetrofitInstance() {
