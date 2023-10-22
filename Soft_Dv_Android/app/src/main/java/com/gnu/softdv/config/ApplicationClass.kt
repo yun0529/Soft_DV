@@ -2,6 +2,7 @@ package com.gnu.softdv.config
 
 import android.app.Application
 import android.content.SharedPreferences
+import com.gnu.softdv.src.search.model.SearchResult
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -18,6 +19,7 @@ class ApplicationClass : Application(){
         lateinit var retrofit: Retrofit
         // JWT Token Header 키 값
         val HEADER_TOKEN = "HEADER_TOKEN"
+        var searchArray = arrayListOf<SearchResult>()
     }
 
     override fun onCreate() {

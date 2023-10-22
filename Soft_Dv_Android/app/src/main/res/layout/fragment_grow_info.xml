@@ -135,6 +135,7 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <include
+                    android:id="@+id/included"
                     layout="@layout/layout_grow_info_characteristic"
                     app:layout_constraintTop_toBottomOf="@id/tv_characteristic"
                     app:layout_constraintStart_toStartOf="parent"
@@ -285,7 +286,7 @@
                 android:layout_marginTop="5dp"/>
 
             <TextView
-                android:id="@+id/tv_ecology"
+                android:id="@+id/tv_tip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="사육 TIP"
@@ -300,7 +301,7 @@
                 android:drawablePadding="10dp"/>
 
             <TextView
-                android:id="@+id/tv_ecology_content"
+                android:id="@+id/tv_tip_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="6~9월에 나타나며, 연 1회 발생한다.
@@ -309,7 +310,7 @@
 그 속에서 애벌레로 1~2년 정도 지내다 어른벌레가
 된다. 애벌레로 고목 속에서 겨울을 난다."
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@id/tv_ecology"
+                app:layout_constraintTop_toBottomOf="@id/tv_tip"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="15dp"

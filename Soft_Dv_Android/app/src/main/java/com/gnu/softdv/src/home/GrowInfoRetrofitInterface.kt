@@ -7,8 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface GrowInfoRetrofitInterface {
-    @GET("/products")
-    fun getGrowInfo(@Query("userIdx") userIdx : Int,
-                   @Query ("regionName") regionName : String
+    @GET("/app/search/detail")
+    fun getGrowInfo(@Query("idx") idx : Int
     ): Call<GrowInfoResponse>
 }

@@ -17,7 +17,7 @@ import com.gnu.softdv.src.search.model.SearchResult
 
 private lateinit var binding: ItemSearchResultBinding
 
-class SearchAdapter (private val context: Context, private val dataSet: ArrayList<SearchResult>) :
+class SearchAdapter (private val context: Context, private val dataSet: ArrayList<SearchResult>, private val count:Int) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val TYPE_ITEM = 1;
@@ -37,7 +37,13 @@ class SearchAdapter (private val context: Context, private val dataSet: ArrayLis
     override fun getItemViewType(position: Int): Int {
         return TYPE_ITEM
     }
-    override fun getItemCount(): Int = dataSet.size
+    override fun getItemCount(): Int {
+        return if(count == 0){
+            dataSet.size
+        }else{
+            count
+        }
+    }
 
     inner class ViewHolder(private val binding : ItemSearchResultBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -48,13 +54,14 @@ class SearchAdapter (private val context: Context, private val dataSet: ArrayLis
 
             binding.clItem.setOnClickListener {
                 val bundle = Bundle()
-                bundle.putString("key", "value")
+                bundle.putInt("idx", data.idx)
+                bundle.putString("image", data.image)
 
                 val passBundleBFragment = GrowInfoFragment()
                 passBundleBFragment.arguments = bundle
 
                 (context as MainActivity).supportFragmentManager.beginTransaction()
-                    .add(R.id.main_frm, GrowInfoFragment())
+                    .add(R.id.main_frm, passBundleBFragment)
                     .commit()
             }
         }

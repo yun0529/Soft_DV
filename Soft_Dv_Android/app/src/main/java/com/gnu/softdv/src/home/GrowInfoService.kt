@@ -7,9 +7,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class GrowInfoService (val growInfoFragment: GrowInfoFragment) {
-    fun tryGetGrowInfo(userIdx : Int, regionName : String){
+    fun tryGetGrowInfo(idx : Int){
         val growInfoRetrofitInterface = ApplicationClass.retrofit.create(GrowInfoRetrofitInterface::class.java)
-        growInfoRetrofitInterface.getGrowInfo(userIdx,regionName).enqueue(object :
+        growInfoRetrofitInterface.getGrowInfo(idx).enqueue(object :
             Callback<GrowInfoResponse> {
             override fun onResponse(call: Call<GrowInfoResponse>, response: Response<GrowInfoResponse>) {
                 growInfoFragment.onGetGrowInfoSuccess(response.body() as GrowInfoResponse)

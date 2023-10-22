@@ -24,7 +24,7 @@
                 android:alpha="0.75"/>
 
             <TextView
-                android:id="@+id/tv_species"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="분류군"
@@ -59,7 +59,7 @@
 
 
             <TextView
-                android:id="@+id/tv_len_male"
+                android:id="@+id/tv_species"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="23 ~ 40 mm"
@@ -93,7 +93,7 @@
 
 
             <TextView
-                android:id="@+id/tv_len_female"
+                android:id="@+id/tv_max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="27 ~ 30 mm"
@@ -127,7 +127,7 @@
 
 
             <TextView
-                android:id="@+id/tv_color"
+                android:id="@+id/tv_life_span"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="황갈색, 적갈색"

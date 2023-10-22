@@ -23,15 +23,13 @@ class SearchVPAdapter (manager: FragmentManager): FragmentPagerAdapter(manager) 
         return titleList[position]
     }
 
+    override fun getItemPosition(`object`: Any): Int {
+        return POSITION_NONE
+    }
 
     fun addFragment(fragment: Fragment, title: String){
         fragmentList.add(fragment)
         titleList.add(title)
     }
-
-//    fun changeFragment(fragment: Fragment, position: Int){
-//        fragmentList.add(fragment)
-//        titleList.add(title)
-//    }
 
 }

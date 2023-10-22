@@ -1,6 +1,7 @@
 package com.gnu.softdv.src.search.model
 
 data class SearchResult(
+    val idx:Int,
     val image:String,
     val name:String,
     val content:String
