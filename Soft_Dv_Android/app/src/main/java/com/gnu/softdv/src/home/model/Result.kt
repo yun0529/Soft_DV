@@ -1,12 +1,14 @@
 package com.gnu.softdv.src.home.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Result(
-    val insectInfoIndex : Int,
-    val scientificName : String,
-    val kind : String,
-    val sizeMax : Float,
-    val lifeCycle : String,
-    val image : String,
-    val location : String,
-    val breedTip : String,
+    @SerializedName("insectInfoIndex") val insectInfoIndex : Int,
+    @SerializedName("scientificName") val scientificName : String,
+    @SerializedName("kind") val kind : String,
+    @SerializedName("sizeMax") val sizeMax : Float,
+    @SerializedName("lifeCycle") val lifeCycle : String,
+    @SerializedName("image") val image : String,
+    @SerializedName("location") val location : String,
+    @SerializedName("breedTip") val breedTip : String,
 )

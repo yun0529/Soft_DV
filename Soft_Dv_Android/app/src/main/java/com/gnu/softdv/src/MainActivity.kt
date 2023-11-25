@@ -40,17 +40,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
         binding.mainBnv.setOnItemSelectedListener{ item ->
             when (item.itemId) {
-
                 R.id.home -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.main_frm, HomeFragment())
-                        .commitAllowingStateLoss()
-                    return@setOnItemSelectedListener true
-                }
-
-                R.id.event -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.main_frm, EventFragment())
                         .commitAllowingStateLoss()
                     return@setOnItemSelectedListener true
                 }

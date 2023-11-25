@@ -6,9 +6,7 @@ import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.gnu.softdv.R
 import com.gnu.softdv.config.BaseFragment
-import com.gnu.softdv.databinding.FragmentEventBinding
 import com.gnu.softdv.databinding.FragmentHomeBinding
-import com.gnu.softdv.src.MainActivity
 import com.gnu.softdv.src.main.BannerAdapter
 import com.gnu.softdv.src.main.model.banner
 
@@ -31,6 +29,6 @@ class HomeFragment  : BaseFragment<FragmentHomeBinding>(
         Log.d("test",bannerSet.size.toString())
         imageAdapter.adapter = BannerAdapter(requireContext(),bannerSet)
         imageAdapter.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        binding.dotsIndicator.setViewPager2(binding.vpBanner)
+        binding.dotsIndicator.attachTo(binding.vpBanner)
     }
 }

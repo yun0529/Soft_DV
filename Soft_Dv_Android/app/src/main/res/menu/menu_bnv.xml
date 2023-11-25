@@ -8,11 +8,6 @@
         android:enabled="true"
         android:title="홈"/>
     <item
-        android:id="@+id/event"
-        android:icon="@drawable/menu_event"
-        app:showAsAction="always"
-        android:title="둘러보기" />
-    <item
         android:id="@+id/manage"
         android:icon="@drawable/menu_manage"
         app:showAsAction="always"

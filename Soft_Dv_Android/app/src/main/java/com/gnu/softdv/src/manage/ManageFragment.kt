@@ -2,10 +2,8 @@ package com.gnu.softdv.src.manage
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.FragmentManager
 import com.gnu.softdv.R
 import com.gnu.softdv.config.BaseFragment
-import com.gnu.softdv.databinding.FragmentEventBinding
 import com.gnu.softdv.databinding.FragmentManageBinding
 
 class ManageFragment  : BaseFragment<FragmentManageBinding>(

@@ -31,11 +31,6 @@ class GrowInfoFragment  : BaseFragment<FragmentGrowInfoBinding>(
         //Log.d("bundle", arguments?.getInt("idx").toString())
 
         arguments?.let { GrowInfoService(this@GrowInfoFragment).tryGetGrowInfo(it.getInt("idx",0)) }
-//        vpAdapter = binding.vpImage
-//        imageSet.add(banner("https://images.chosun.com/resizer/RoEpqg90GYIOr0f6ySbZRaN9p88=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/JVOFO2IL6TGPZCHVVPTFXW6OOU.jpg"))
-//        imageSet.add(banner("https://images.chosun.com/resizer/RoEpqg90GYIOr0f6ySbZRaN9p88=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/JVOFO2IL6TGPZCHVVPTFXW6OOU.jpg"))
-//        imageSet.add(banner("https://images.chosun.com/resizer/RoEpqg90GYIOr0f6ySbZRaN9p88=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/JVOFO2IL6TGPZCHVVPTFXW6OOU.jpg"))
-//        imageSet.add(banner("https://images.chosun.com/resizer/RoEpqg90GYIOr0f6ySbZRaN9p88=/464x0/smart/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/JVOFO2IL6TGPZCHVVPTFXW6OOU.jpg"))
 
         requireActivity().onBackPressedDispatcher.addCallback(object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -54,13 +49,14 @@ class GrowInfoFragment  : BaseFragment<FragmentGrowInfoBinding>(
         vpAdapter.adapter = BannerAdapter(requireContext(),imageSet)
         vpAdapter.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         binding.dotsIndicator.setViewPager2(binding.vpImage)
-
+        binding.name.text = response.result.kind
         binding.tvIntroContent.visibility = View.GONE
         binding.tvShapeContent.visibility = View.GONE
 
         binding.tvTipContent.text = response.result.breedTip
         binding.included.tvName.text = response.result.scientificName
         binding.included.tvSpecies.text = response.result.kind
+        binding.included.tvLifeSpan.text = response.result.lifeCycle
         binding.included.tvMax.text = response.result.sizeMax.toString()
         binding.included.tvLifeSpan.text
 
@@ -86,7 +82,7 @@ class GrowInfoFragment  : BaseFragment<FragmentGrowInfoBinding>(
 
         //지도의 중심점을 수원 화성으로 설정, 확대 레벨 설정 (값이 작을수록 더 확대됨)
         (mapView as net.daum.mf.map.api.MapView).setMapCenterPoint(mapPoint, true)
-        //(mapView as net.daum.mf.map.api.MapView).setZoomLevel(1, true)
+        (mapView as net.daum.mf.map.api.MapView).setZoomLevel(7, true)
         (mapView as net.daum.mf.map.api.MapView).addPOIItem(marker)
         mapView.setOnTouchListener { view, motionEvent ->
             val action = motionEvent.action

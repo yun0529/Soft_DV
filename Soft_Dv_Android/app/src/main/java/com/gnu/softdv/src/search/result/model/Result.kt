@@ -1,8 +1,10 @@
 package com.gnu.softdv.src.search.result.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Result(
-    val index : Int,
-    val kind : String,
-    val image :String?,
-    val scientificName : String
+    @SerializedName("index") val index : Int,
+    @SerializedName("kind") val kind : String,
+    @SerializedName("image") val image :String?,
+    @SerializedName("scientificName") val scientificName : String
 )
