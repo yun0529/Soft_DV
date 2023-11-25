@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/main_tb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/main_tb"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_arrow_back"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/main_tb"
+        android:background="#ECECEC"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/main_tb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layoutDescription="@layout/item_main_banner"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginTop="30dp"/>
+
+            <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                android:id="@+id/dots_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:dotsColor="#ECECEC"
+                app:dotsCornerRadius="5dp"
+                app:dotsSize="10dp"
+                app:dotsSpacing="4dp"
+                app:dotsWidthFactor="4"
+                app:selectedDotColor="@color/black"
+                app:progressMode="true"
+                app:layout_constraintTop_toBottomOf="@id/vp_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"/>
+
+            <View
+                android:id="@+id/gl1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:layout_constraintTop_toBottomOf="@id/vp_image"
+                android:background="#ECECEC"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="톱사슴벌레"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="15dp"
+                app:layout_constraintTop_toBottomOf="@id/gl1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <ImageView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_edit_info"
+                app:layout_constraintTop_toTopOf="@id/name"
+                app:layout_constraintBottom_toBottomOf="@id/name"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="15dp"/>
+
+            <View
+                android:id="@+id/gl2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:layout_constraintTop_toBottomOf="@id/name"
+                android:background="#ECECEC"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_characteristic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="특성"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:drawableLeft="@drawable/icon_characteristic"
+                app:layout_constraintTop_toBottomOf="@id/gl2"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="10dp"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_characteristic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_characteristic"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <include
+                    android:id="@+id/included"
+                    layout="@layout/layout_grow_info_characteristic"
+                    app:layout_constraintTop_toBottomOf="@id/tv_characteristic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DCDCDC"
+                app:layout_constraintBottom_toTopOf="@id/tv_intro"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="개요"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:drawableLeft="@drawable/icon_intro"
+                app:layout_constraintTop_toBottomOf="@id/cl_characteristic"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_intro_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="참나무 진에 날아오며, 어두워질 무렵 등불에도 잘
+날아온다. 낮에는 참나무의 나무껍질 사이에 들어가
+숨어있는 경우가 많다. 우리나라 사슴벌레 중에서 큰턱이
+앞으로 굽는다. 건들면 큰턱을 벌리거나 들어 올려
+위협하는 행동을 하며, 턱 안쪽에 잔 가시돌기가 많아
+‘톱’ 모양을 연상시킨다."
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/tv_intro"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"/>
+
+            <View
+                android:id="@+id/gl_intro"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DCDCDC"
+                app:layout_constraintTop_toBottomOf="@id/tv_intro_content"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DCDCDC"
+                app:layout_constraintTop_toBottomOf="@id/gl_intro"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_shape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="형태"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:drawableLeft="@drawable/icon_shape"
+                app:layout_constraintTop_toBottomOf="@id/tv_intro_content"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_shape_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="몸길이는 수컷이 23~40mm, 암컷이 27~30mm이다.
+몸은 흑갈색 또는 적갈색을 띠고, 크기가 다양하다.
+수컷의 큰턱은 앞으로 완만하게 굽었는데,
+톱날 같은 작은 돌기가 빽빽이 나 있다.
+이 큰턱은 끝에서 3/5 부분 안쪽에 큰 이빨이 있고,
+그 사이에 작은이빨이 6~8개가 있다.
+암컷은 몸 전체가 타원 모양으로 둥글고,
+옆에서 보면 가운데가 튀어나와 있다."
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/tv_shape"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"/>
+
+            <View
+                android:id="@+id/gl_shape"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DCDCDC"
+                app:layout_constraintTop_toBottomOf="@id/tv_shape_content"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DCDCDC"
+                app:layout_constraintTop_toBottomOf="@id/gl_shape"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_map"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="분포지역"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:drawableLeft="@drawable/icon_map"
+                app:layout_constraintTop_toBottomOf="@id/tv_shape_content"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="10dp"/>
+
+            <net.daum.mf.map.api.MapView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_map"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"/>
+
+            <View
+                android:id="@+id/gl_map"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DCDCDC"
+                app:layout_constraintTop_toBottomOf="@id/map"
+                android:layout_marginTop="5dp"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DCDCDC"
+                app:layout_constraintTop_toBottomOf="@id/gl_map"
+                android:layout_marginTop="5dp"/>
+
+            <TextView
+                android:id="@+id/tv_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="사육 TIP"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:drawableLeft="@drawable/icon_life"
+                app:layout_constraintTop_toBottomOf="@id/map"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:drawablePadding="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_tip_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6~9월에 나타나며, 연 1회 발생한다.
+애벌레 때의 먹이는 참나무류 고목의 썩은 부분이다.
+암컷은 참나무류의 고목 속에 알을 낳는데,
+그 속에서 애벌레로 1~2년 정도 지내다 어른벌레가
+된다. 애벌레로 고목 속에서 겨울을 난다."
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/tv_tip"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
