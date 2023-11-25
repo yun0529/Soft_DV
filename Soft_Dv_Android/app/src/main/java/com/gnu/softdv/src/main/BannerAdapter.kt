@@ -37,8 +37,8 @@ class BannerAdapter(private val context: Context, private val dataSet: ArrayList
     inner class ViewHolder(private val binding : ItemMainBannerBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data : banner) {
-            binding.bannerImage.setImageResource(R.drawable.ic_launcher_background)
-            //Glide.with(context).load(data.img).into(binding.bannerImage)
+            //binding.bannerImage.setImageResource(R.drawable.ic_launcher_background)
+            Glide.with(context).load(data.img).into(binding.bannerImage)
         }
     }
 }

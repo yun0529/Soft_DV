@@ -19,11 +19,11 @@
         android:id="@+id/main_bnv"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        app:itemIconTint="@drawable/bottom_navi_selector"
+        app:itemTextColor="@drawable/bottom_navi_selector"
         app:menu="@menu/menu_bnv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

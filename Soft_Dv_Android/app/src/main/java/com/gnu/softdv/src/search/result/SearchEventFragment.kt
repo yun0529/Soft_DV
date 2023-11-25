@@ -1,16 +1,19 @@
-package com.gnu.softdv.src.manage
+package com.gnu.softdv.src.search.result
 
 import android.os.Bundle
 import android.view.View
 import com.gnu.softdv.R
 import com.gnu.softdv.config.BaseFragment
-import com.gnu.softdv.databinding.FragmentManageBinding
+import com.gnu.softdv.databinding.FragmentSearchEventBinding
 
-class ManageFragment  : BaseFragment<FragmentManageBinding>(
-    FragmentManageBinding::bind, R.layout.fragment_manage
+class SearchEventFragment  : BaseFragment<FragmentSearchEventBinding>(
+    FragmentSearchEventBinding::bind, R.layout.fragment_search_event
 ) {
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
     }
 }

@@ -1,6 +1,446 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/main_tb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/main_tb"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_arrow_back"/>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/main_tb"
+            android:background="#ECECEC"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="톱사슴벌레 / 2세대"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintTop_toBottomOf="@id/main_tb"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_setting"
+            app:layout_constraintStart_toEndOf="@id/tv_name"
+            app:layout_constraintTop_toTopOf="@id/tv_name"
+            app:layout_constraintBottom_toBottomOf="@id/tv_name"
+            android:layout_marginStart="20dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_title_image"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="22dp"
+            app:cardCornerRadius="120dp">
+
+            <ImageView
+                android:id="@+id/title_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_launcher_background"/>
+        </androidx.cardview.widget.CardView>
+
+        <View
+            android:id="@+id/gl1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_title_image"
+            android:background="#ECECEC"
+            android:layout_marginTop="46dp"/>
+
+        <TextView
+            android:id="@+id/tv_temp_humid_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="온도 및 습도"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:drawableLeft="@drawable/icon_thermometer_plus"
+            android:drawablePadding="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/gl1"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_temp_humid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현재 온도 및 습도"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_temp_humid_title"
+            app:layout_constraintStart_toStartOf="@id/tv_temp_humid_title"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_cur_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="25℃"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_temp_humid"
+            app:layout_constraintStart_toStartOf="@id/tv_temp_humid"/>
+
+        <TextView
+            android:id="@+id/tv_cur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text=" / "
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/tv_cur_temp"
+            app:layout_constraintStart_toEndOf="@id/tv_cur_temp"/>
+
+        <TextView
+            android:id="@+id/tv_cur_humid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="56%"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/tv_cur"
+            app:layout_constraintStart_toEndOf="@id/tv_cur"/>
+
+        <View
+            android:id="@+id/gl2"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_cur_temp"
+            android:background="#ECECEC"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+
+        <TextView
+            android:id="@+id/tv_recommend_temp_humid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="추천 온도 및 습도"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/gl2"
+            app:layout_constraintStart_toStartOf="@id/tv_cur_temp"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_recommend_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="26℃"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_recommend_temp_humid"
+            app:layout_constraintStart_toStartOf="@id/tv_recommend_temp_humid"/>
+
+        <TextView
+            android:id="@+id/tv_recommend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text=" / "
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/tv_recommend_temp"
+            app:layout_constraintStart_toEndOf="@id/tv_recommend_temp"/>
+
+        <TextView
+            android:id="@+id/tv_recommend_humid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="65%"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/tv_recommend"
+            app:layout_constraintStart_toEndOf="@id/tv_recommend"/>
+
+        <View
+            android:id="@+id/gl3"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_recommend_temp"
+            android:background="#ECECEC"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+        <ImageView
+            android:id="@+id/iv_thermo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/icon_thermometer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gl3"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:id="@+id/tv_edit_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="38sp"
+            android:text="26℃"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/iv_thermo"
+            app:layout_constraintStart_toEndOf="@id/iv_thermo"
+            android:layout_marginStart="31dp"
+            android:layout_marginTop="5dp"/>
+
+        <ProgressBar
+            android:id="@+id/pb_temp"
+            android:layout_width="120dp"
+            android:layout_height="10dp"
+            style="?android:attr/progressBarStyleHorizontal"
+            app:layout_constraintStart_toEndOf="@id/iv_thermo"
+            app:layout_constraintTop_toBottomOf="@id/tv_edit_temp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="10dp"
+            android:progress="28"
+            android:max="100"
+            android:progressDrawable="@drawable/custom_progress_red"/>
+
+        <ImageButton
+            android:id="@+id/iv_temp_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/iv_thermo"
+            app:layout_constraintBottom_toBottomOf="@id/iv_thermo"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ripple_btn_down_default"
+            android:background="@null"/>
+
+        <ImageView
+            android:id="@+id/iv_temp_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/iv_temp_down"
+            app:layout_constraintBottom_toBottomOf="@id/iv_temp_down"
+            app:layout_constraintEnd_toStartOf="@id/iv_temp_down"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ripple_btn_up_default"
+            android:background="@null"
+            android:clickable="true"/>
+
+        <View
+            android:id="@+id/gl4"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/iv_thermo"
+            android:background="#ECECEC"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+        <ImageView
+            android:id="@+id/iv_humid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/icon_raindrops"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/gl4"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:id="@+id/tv_edit_humid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="38sp"
+            android:text="60%"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/iv_humid"
+            app:layout_constraintStart_toEndOf="@id/iv_humid"
+            android:layout_marginStart="31dp"/>
+
+        <ProgressBar
+            android:id="@+id/pb_humid"
+            android:layout_width="120dp"
+            android:layout_height="10dp"
+            style="?android:attr/progressBarStyleHorizontal"
+            app:layout_constraintStart_toEndOf="@id/iv_humid"
+            app:layout_constraintTop_toBottomOf="@id/tv_edit_humid"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="10dp"
+            android:progress="60"
+            android:max="100"
+            android:progressDrawable="@drawable/custom_progress_blue"/>
+
+        <ImageButton
+            android:id="@+id/iv_humid_down"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/iv_humid"
+            app:layout_constraintBottom_toBottomOf="@id/iv_humid"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ripple_btn_down_default"
+            android:background="@null"/>
+
+        <ImageButton
+            android:id="@+id/iv_humid_up"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/iv_humid_down"
+            app:layout_constraintBottom_toBottomOf="@id/iv_humid_down"
+            app:layout_constraintEnd_toStartOf="@id/iv_humid_down"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ripple_btn_up_default"
+            android:background="@null"/>
+
+        <View
+            android:id="@+id/gl5"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/pb_humid"
+            android:background="#ECECEC"
+            android:layout_marginTop="38dp"/>
+
+        <View
+            android:id="@+id/gl6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/gl5"
+            android:background="#ECECEC"
+            android:layout_marginTop="7dp"/>
+
+        <TextView
+            android:id="@+id/tv_bug_size_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="개체크기"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:drawableLeft="@drawable/icon_bug_size"
+            android:drawablePadding="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@id/gl6"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_bug_size_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1세대 개체 크기"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/tv_bug_size_title"
+            app:layout_constraintStart_toStartOf="@id/tv_bug_size_title"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_first_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="35mm"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_bug_size_first"
+            app:layout_constraintStart_toStartOf="@id/tv_bug_size_first"/>
+
+
+        <View
+            android:id="@+id/gl7"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_first_size"
+            android:background="#ECECEC"
+            android:layout_marginTop="17dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_bug_size_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2세대 개체 크기"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/gl7"
+            app:layout_constraintStart_toStartOf="@id/tv_first_size"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/tv_second_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="10g"
+            android:textColor="@color/black"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_bug_size_second"
+            app:layout_constraintStart_toStartOf="@id/tv_bug_size_second"/>
+
+        <TextView
+            android:id="@+id/tv_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text=" / "
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/tv_second_size"
+            app:layout_constraintStart_toEndOf="@id/tv_second_size"/>
+
+        <TextView
+            android:id="@+id/tv_second_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="21mm"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/tv_second"
+            app:layout_constraintStart_toEndOf="@id/tv_second"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="60dp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
