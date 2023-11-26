@@ -8,7 +8,7 @@ import com.gnu.softdv.databinding.FragmentManageBinding
 
 class ManageFragment  : BaseFragment<FragmentManageBinding>(
     FragmentManageBinding::bind, R.layout.fragment_manage
-) {
+) { // 프래그먼트 실행과 동시에 호출되는 생명주기
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
