@@ -3,10 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.gnu.softdv">
 
+    <!--  API 통신과 지도 기능을 위한 권한 획득  -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
+    <!--  application의 테마와 내부 화면 구성, sdk 요청을 위한 데이터 등의 application의 전반적인 정보를 정의 -->
     <application
         android:allowBackup="true"
         android:name=".config.ApplicationClass"

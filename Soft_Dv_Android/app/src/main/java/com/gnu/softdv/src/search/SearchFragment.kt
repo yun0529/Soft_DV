@@ -1,15 +1,10 @@
 package com.gnu.softdv.src.search
 
-import android.app.Activity
-import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import android.widget.TextView.OnEditorActionListener
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -22,29 +17,24 @@ import com.gnu.softdv.src.search.model.SearchResult
 import com.gnu.softdv.src.search.result.*
 import com.gnu.softdv.src.search.result.model.SearchResponse
 
-
-data class SResult(val index : Int,
-                      val kind : String,
-                      val image :String,
-                      val scientificName : String
-)
-
+// 검색 결과를 출력할 프래그먼트
 class SearchFragment  : BaseFragment<FragmentSearchBinding>(
     FragmentSearchBinding::bind, R.layout.fragment_search
 ), SearchFragmentInterface, TabSelectInterface {
     lateinit var sAdapter : SearchVPAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {// 프래그먼트 실행과 동시에 호출되는 생명주기
         super.onViewCreated(view, savedInstanceState)
-        initViewPager()
-        binding.search.imeOptions = EditorInfo.IME_ACTION_DONE
+        initViewPager() // 뷰페이저 초기화
+        binding.search.imeOptions = EditorInfo.IME_ACTION_DONE // 키보드 엔터시 검색 실행
 
         //binding.search.setOnEditorActionListener()
 
+        // 검색어에 대해 검색 기능을 수행하는 리스너
         binding.search.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
+                // 검색 API 호출
                 SearchService(this@SearchFragment).tryGetSearchTotalGrow(binding.search.text.toString())
-
 
 //                val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 //                inputMethodManager.hideSoftInputFromWindow(binding.search.windowToken, 0)
@@ -57,7 +47,7 @@ class SearchFragment  : BaseFragment<FragmentSearchBinding>(
 
     }
 
-    // viewPager 세팅
+    // viewPager 세팅 -> 각 카테고리에 대한 탭 초기화
     private fun initViewPager() {
 
         sAdapter = SearchVPAdapter((activity as MainActivity).supportFragmentManager)
@@ -71,7 +61,7 @@ class SearchFragment  : BaseFragment<FragmentSearchBinding>(
         binding.searchTbl.setupWithViewPager(binding.resultVp)
     }
 
-    override fun onGetSearchSuccess(response: SearchResponse) {
+    override fun onGetSearchSuccess(response: SearchResponse) {  // 검색 API 호출 성공
         searchArray = arrayListOf()
 
         for(i in 0 until response.result!!.size){
@@ -95,14 +85,15 @@ class SearchFragment  : BaseFragment<FragmentSearchBinding>(
 
     }
 
-    override fun onGetSearchFailure(message: String) {
+    override fun onGetSearchFailure(message: String) { // 검색 API 호출 실패
         showCustomToast(message)
     }
+    // 프래그먼트 재생성 메소드
     private fun refreshFragment(fragment: Fragment, fragmentManager: FragmentManager) {
         var ft: FragmentTransaction = fragmentManager.beginTransaction()
         ft.detach(fragment).attach(fragment).commit()
     }
-
+    // 리사이클러뷰 아이템 클릭시
     override fun setTab(num: Int) {
         Log.d("Tba",binding.searchTbl.getTabAt(1).toString())
         //binding.resultVp.currentItem = sAdapter.getItemPosition()
