@@ -10,7 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class ApplicationClass : Application(){
-    val API_URL = "https://gnusoftdev.shop/" // API를 받아오는 기본 주소
 
     companion object{ // 앱 실행과 동시에 초기화 할 변수
         lateinit var sDB : SharedPreferences // 폰의 메모리에 데이터를 저장하기 위한 변수
@@ -20,6 +19,7 @@ class ApplicationClass : Application(){
         // JWT Token Header 키 값
         const val HEADER_TOKEN = "HEADER_TOKEN"
         var searchArray = arrayListOf<SearchResult>() // 검색 결과를 저장할 리스트
+        const val API_URL = "https://gnusoftdev.shop/" // API를 받아오는 기본 주소
     }
 
     override fun onCreate() { // 앱 실행과 동시에 호출
@@ -43,7 +43,7 @@ class ApplicationClass : Application(){
         // retrofit 이라는 전역변수에 API url, 인터셉터, Gson 을 넣어주고 빌드해주는 코드
         // 이 전역변수로 http 요청을 서버로 보낸다.
         retrofit = Retrofit.Builder()
-            .baseUrl(API_URL)
+            .baseUrl(Companion.API_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
