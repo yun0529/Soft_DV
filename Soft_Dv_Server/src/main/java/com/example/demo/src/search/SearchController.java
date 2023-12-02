@@ -20,20 +20,18 @@ import static com.example.demo.config.BaseResponseStatus.EMPTY_OBJECT_RETURNED;
 @RequestMapping("/app/search")
 public class SearchController {
     private final SearchService searchService;
-    private final SearchProvider searchProvider;
-    private InnerMethod m = new InnerMethod();
+
     //Constructor
-    public SearchController(SearchService searchService, SearchProvider searchProvider){
+    public SearchController(SearchService searchService){
         this.searchService = searchService;
-        this.searchProvider = searchProvider;
     }
 
     @ResponseBody
     @GetMapping("")
     public BaseResponse<ArrayList<SearchRes>> search(@RequestParam("input") String input){
-        ArrayList<String> words = m._divideIntoWords(input);
+
         try{
-            ArrayList<SearchRes> result = this.searchService.search(words);
+            ArrayList<SearchRes> result = this.searchService.search(input);
             if(result.isEmpty()){
                 throw new BaseException(EMPTY_OBJECT_RETURNED);
             }

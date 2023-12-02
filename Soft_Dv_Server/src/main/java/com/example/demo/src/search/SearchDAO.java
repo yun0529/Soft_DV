@@ -22,21 +22,20 @@ public class SearchDAO {
 
     public ArrayList<SearchRes> search(ArrayList<String> words) {
         ArrayList<SearchRes> result = new ArrayList<>();
-        String tempParam = "";
-
 
         Set<Integer> indexSet = new HashSet<>();
 
         for (String word : words) {
             String getIndexSql = "SELECT insectInfoIdx FROM InsectInfo WHERE " +
-                    "scientificName LIKE '%"+word+"%' " +
-                    "OR kind LIKE '%"+word+"%'  " +
-                    "OR sizeMax LIKE '%"+word+"%'  " +
-                    "OR lifeCycle LIKE '%"+word+"%'  " +
-                    "OR breedTip LIKE '%"+word+"%' ";
-            List<Integer> indexes = this.jdbcTemplate.queryForList(getIndexSql,int.class);
-            for (int i = 0; i < indexes.size(); i++) {
-                indexSet.add(indexes.get(i));
+                    "scientificName LIKE ? " +
+                    "OR kind LIKE ? " +
+                    "OR sizeMax LIKE ? " +
+                    "OR lifeCycle LIKE ? " +
+                    "OR breedTip LIKE ? ";
+            List<Integer> indexes = this.jdbcTemplate.queryForList(getIndexSql,int.class,word);
+
+            for (int index : indexes) {
+                indexSet.add(index);
             }
         }
 
