@@ -2,7 +2,6 @@ package com.example.demo.src.search;
 
 import com.example.demo.src.search.object.DetailRes;
 import com.example.demo.src.search.object.SearchRes;
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,6 +14,7 @@ import java.util.*;
 public class SearchDAO {
     private JdbcTemplate jdbcTemplate;
 
+    public void SearchDAO(){};
     @Autowired
     public void SearchDAO(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -22,21 +22,20 @@ public class SearchDAO {
 
     public ArrayList<SearchRes> search(ArrayList<String> words) {
         ArrayList<SearchRes> result = new ArrayList<>();
-        String tempParam = "";
-
 
         Set<Integer> indexSet = new HashSet<>();
 
         for (String word : words) {
             String getIndexSql = "SELECT insectInfoIdx FROM InsectInfo WHERE " +
-                    "scientificName LIKE '%"+word+"%' " +
-                    "OR kind LIKE '%"+word+"%'  " +
-                    "OR sizeMax LIKE '%"+word+"%'  " +
-                    "OR lifeCycle LIKE '%"+word+"%'  " +
-                    "OR breedTip LIKE '%"+word+"%' ";
-            List<Integer> indexes = this.jdbcTemplate.queryForList(getIndexSql,int.class);
-            for (int i = 0; i < indexes.size(); i++) {
-                indexSet.add(indexes.get(i));
+                    "scientificName LIKE ? " +
+                    "OR kind LIKE ? " +
+                    "OR sizeMax LIKE ? " +
+                    "OR lifeCycle LIKE ? " +
+                    "OR breedTip LIKE ? ";
+            List<Integer> indexes = this.jdbcTemplate.queryForList(getIndexSql,int.class,word);
+
+            for (int index : indexes) {
+                indexSet.add(index);
             }
         }
 
@@ -68,5 +67,8 @@ public class SearchDAO {
                         rs.getString("location"),
                         rs.getString("breedTip")
                 ));
+    }
+    public JdbcTemplate getObject(){
+        return this.jdbcTemplate;
     }
 }
