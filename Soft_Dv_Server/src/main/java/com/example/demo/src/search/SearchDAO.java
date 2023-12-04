@@ -2,7 +2,6 @@ package com.example.demo.src.search;
 
 import com.example.demo.src.search.object.DetailRes;
 import com.example.demo.src.search.object.SearchRes;
-import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,6 +14,7 @@ import java.util.*;
 public class SearchDAO {
     private JdbcTemplate jdbcTemplate;
 
+    public void SearchDAO(){};
     @Autowired
     public void SearchDAO(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -67,5 +67,8 @@ public class SearchDAO {
                         rs.getString("location"),
                         rs.getString("breedTip")
                 ));
+    }
+    public JdbcTemplate getObject(){
+        return this.jdbcTemplate;
     }
 }

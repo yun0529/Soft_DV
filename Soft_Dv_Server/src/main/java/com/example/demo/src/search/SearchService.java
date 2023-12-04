@@ -2,6 +2,7 @@ package com.example.demo.src.search;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.src._method.InnerMethod;
+import com.example.demo.src.search.SearchDAO;
 import com.example.demo.src.search.object.DetailRes;
 import com.example.demo.src.search.object.SearchRes;
 import org.springframework.stereotype.Service;

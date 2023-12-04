@@ -2,9 +2,9 @@ package com.example.demo.src.search;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
-import com.example.demo.src._method.InnerMethod;
 import com.example.demo.src.search.object.DetailRes;
 import com.example.demo.src.search.object.SearchRes;
+import com.example.demo.src.search.SearchService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
