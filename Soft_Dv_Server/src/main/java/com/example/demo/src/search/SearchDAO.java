@@ -70,7 +70,7 @@ public class SearchDAO {
     }
 
     public int test(){
-        String sql = "UPDATE Shop SET shopIdx = shopIdx+1 WHERE userIdx = 0";
-        return this.jdbcTemplate.update(sql,int.class);
+        String sql = "UPDATE Shop SET test = test + 1 WHERE shopIdx = 1";
+        return this.jdbcTemplate.update(sql);
     }
 }
