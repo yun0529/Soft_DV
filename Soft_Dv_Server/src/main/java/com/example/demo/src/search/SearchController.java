@@ -48,6 +48,7 @@ public class SearchController {
         }
     }
 
+    @ResponseBody
     @PostMapping("/test")
     public BaseResponse<String> test(){
         try{
