@@ -48,7 +48,8 @@ public class SearchController {
         }
     }
 
-    @PostMapping
+    @ResponseBody
+    @PostMapping("/test")
     public BaseResponse<String> test(){
         try{
             return new BaseResponse(this.searchService.test());
