@@ -6,10 +6,7 @@ import com.example.demo.src.search.object.DetailRes;
 import com.example.demo.src.search.object.SearchRes;
 import com.example.demo.src.search.SearchService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -46,6 +43,15 @@ public class SearchController {
     public BaseResponse<DetailRes> detail(@RequestParam("idx") int insectInfoIdx){
         try{
             return new BaseResponse(this.searchService.detail(insectInfoIdx));
+        }catch (BaseException e){
+            return new BaseResponse<>(e.getStatus());
+        }
+    }
+
+    @PostMapping
+    public BaseResponse<String> test(){
+        try{
+            return new BaseResponse(this.searchService.test());
         }catch (BaseException e){
             return new BaseResponse<>(e.getStatus());
         }

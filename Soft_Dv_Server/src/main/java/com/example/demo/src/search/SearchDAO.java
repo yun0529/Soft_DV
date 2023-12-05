@@ -68,7 +68,9 @@ public class SearchDAO {
                         rs.getString("breedTip")
                 ));
     }
-    public JdbcTemplate getObject(){
-        return this.jdbcTemplate;
+
+    public int test(){
+        String sql = "UPDATE Shop SET shopIdx = shopIdx+1 WHERE userIdx = 0";
+        return this.jdbcTemplate.update(sql,int.class);
     }
 }

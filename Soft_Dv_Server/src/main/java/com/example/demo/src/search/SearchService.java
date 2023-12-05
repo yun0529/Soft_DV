@@ -27,4 +27,8 @@ public class SearchService {
     public DetailRes detail(int insectInfoIdx) throws BaseException {
         return this.searchDAO.detail(insectInfoIdx);
     }
+
+    public String test() throws BaseException {
+        return this.searchDAO.test() == 1 ? "success" : "fail";
+    }
 }
