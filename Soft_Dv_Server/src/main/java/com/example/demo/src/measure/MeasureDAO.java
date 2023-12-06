@@ -43,14 +43,14 @@ public class MeasureDAO {
             return this.jdbcTemplate.query(sql,(rs,rowNum)-> new EnvRes(
                     rs.getDouble("curTemperature"),
                     rs.getDouble("curMoisture")
-            )).get(0);
+            ),mode).get(0);
         }
         else if (mode.toLowerCase().equals("set")) { // set
             sql = "SELECT setTemperature, setMoisture FROM Machine WHERE machineIdx = ? ";
             return this.jdbcTemplate.query(sql,(rs,rowNum)-> new EnvRes(
                     rs.getDouble("setTemperature"),
                     rs.getDouble("setMoisture")
-            )).get(0);
+            ),mode).get(0);
         }
     return null;
     }
