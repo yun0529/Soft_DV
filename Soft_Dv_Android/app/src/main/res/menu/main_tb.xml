@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/chat"
+        android:icon="@drawable/icon_tb_chat"
+        android:visible="true"
+        android:title="채팅"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/alarm"
+        android:icon="@drawable/icon_tb_alarm"
+        android:visible="true"
+        android:title="알림"
+        app:showAsAction="always"/>
+</menu>
