@@ -14,7 +14,6 @@ import java.util.*;
 public class SearchDAO {
     private JdbcTemplate jdbcTemplate;
 
-    public void SearchDAO(){};
     @Autowired
     public void SearchDAO(DataSource dataSource){
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -27,12 +26,13 @@ public class SearchDAO {
 
         for (String word : words) {
             String getIndexSql = "SELECT insectInfoIdx FROM InsectInfo WHERE " +
-                    "scientificName LIKE ? " +
-                    "OR kind LIKE ? " +
-                    "OR sizeMax LIKE ? " +
-                    "OR lifeCycle LIKE ? " +
-                    "OR breedTip LIKE ? ";
-            List<Integer> indexes = this.jdbcTemplate.queryForList(getIndexSql,int.class,word);
+                    "scientificName LIKE \'%" +word+"%\'"+
+                    " OR kind LIKE \'%" +word+"%\'"+
+                    " OR sizeMax LIKE \'%" +word+"%\'"+
+                    " OR lifeCycle LIKE \'%" +word+"%\'"+
+                    " OR breedTip LIKE \'%"+word+"%\'";
+            System.out.println(getIndexSql);
+            List<Integer> indexes = this.jdbcTemplate.queryForList(getIndexSql,int.class);
 
             for (int index : indexes) {
                 indexSet.add(index);

@@ -4,6 +4,7 @@ import com.example.demo.config.BaseException;
 import com.example.demo.config.BaseResponse;
 import com.example.demo.src.measure.model.EnvReq;
 import com.example.demo.src.measure.model.EnvRes;
+import com.example.demo.src.measure.model.ManageRes;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class MeasureController {
     }
 
     @ResponseBody
-    @PostMapping("save")
+    @PatchMapping("save")
     public BaseResponse<EnvRes> saveEnvironment(@RequestBody EnvReq envReq) {
         try{
             EnvRes result = measureService.saveEnvironment(envReq);
@@ -28,7 +29,7 @@ public class MeasureController {
     }
 
     @ResponseBody
-    @PostMapping("set")
+    @PatchMapping("set")
     public BaseResponse<EnvRes> setEnvironment(@RequestBody EnvReq envReq){
         try{
             EnvRes result = measureService.setEnvironment(envReq);
@@ -40,9 +41,20 @@ public class MeasureController {
 
     @ResponseBody
     @GetMapping("get")
-    public BaseResponse<EnvRes> getEnvironment(@RequestParam String mode){
+    public BaseResponse<EnvRes> getEnvironment(@RequestParam("mode") String mode){
         try{
             EnvRes result = measureService.getEnvironment(mode);
+            return new BaseResponse<>(result);
+        }catch(BaseException e){
+            return new BaseResponse<>(e.getStatus());
+        }
+    }
+
+    @ResponseBody
+    @GetMapping("manage")
+    public BaseResponse<ManageRes> manage(@RequestParam("group") int group){
+        try{
+            ManageRes result = measureService.manage(group);
             return new BaseResponse<>(result);
         }catch(BaseException e){
             return new BaseResponse<>(e.getStatus());

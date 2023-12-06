@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping("/app/main")
+@RequestMapping("/app/main/")
 public class MainController {
 
     private final MainService mainService;
@@ -22,6 +23,7 @@ public class MainController {
         this.mainService = mainService;
     }
 
+    @ResponseBody
     @GetMapping("breedDetail")
     public BaseResponse<ArrayList<BreedDetailRes>> breedDetail(){
         try {
@@ -31,7 +33,7 @@ public class MainController {
             return new BaseResponse<>(e.getStatus());
         }
     }
-
+    @ResponseBody
     @GetMapping("breedEnv")
     public BaseResponse<BreedEnvRes> breedEnv(){
         try{
