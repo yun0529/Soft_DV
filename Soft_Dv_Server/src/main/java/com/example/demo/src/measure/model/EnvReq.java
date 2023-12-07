@@ -13,5 +13,4 @@ public class EnvReq {
     private int machineIdx;
     private double temperature;
     private double humidity;
-
 }

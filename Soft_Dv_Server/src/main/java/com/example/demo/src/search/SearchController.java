@@ -57,4 +57,5 @@ public class SearchController {
             return new BaseResponse<>(e.getStatus());
         }
     }
+
 }

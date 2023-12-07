@@ -3,7 +3,11 @@ package com.example.demo.src.measure;
 import com.example.demo.config.BaseException;
 import com.example.demo.src.measure.model.EnvReq;
 import com.example.demo.src.measure.model.EnvRes;
+import com.example.demo.src.measure.model.ManageRes;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.demo.config.BaseResponseStatus.EMPTY_OBJECT_RETURNED;
 
@@ -37,5 +41,11 @@ public class MeasureService {
             throw new BaseException(EMPTY_OBJECT_RETURNED);
         }
         return envRes;
+    }
+
+    public List<ManageRes> manage(int group) throws BaseException {
+        List<ManageRes> result = this.measureDAO.manage(group);
+
+        return result;
     }
 }
