@@ -6,6 +6,9 @@ import com.example.demo.src.measure.model.EnvRes;
 import com.example.demo.src.measure.model.ManageRes;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.example.demo.config.BaseResponseStatus.EMPTY_OBJECT_RETURNED;
 
 @Service
@@ -40,9 +43,9 @@ public class MeasureService {
         return envRes;
     }
 
-    public ManageRes manage(int group) throws BaseException {
-        ManageRes manageRes = this.measureDAO.manage(group);
+    public List<ManageRes> manage(int group) throws BaseException {
+        List<ManageRes> result = this.measureDAO.manage(group);
 
-        return manageRes;
+        return result;
     }
 }

@@ -6,6 +6,10 @@ import com.example.demo.src.measure.model.ManageRes;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 @Repository
 public class MeasureDAO {
 
@@ -56,26 +60,31 @@ public class MeasureDAO {
     return null;
     }
 
-    public ManageRes manage(int group){
-        String sql = "SELECT insectIdx, groupIdx,sex, family, weight, size," +
-                " adult, recommandTemperature, recommandMoisture," +
-                " kind, image " +
+    public List<ManageRes> manage(int group){
+        List<ManageRes> result = new ArrayList<>();
+        String sql = "SELECT insectIdx, groupIdx,Insect.insectInfoIdx,sex, family, weight, size," +
+                " adult, recommendTemperature, recommendMoisture, InsectInfo.kind," +
+                " image " +
                 " FROM Insect" +
                 " right join InsectInfo on Insect.insectInfoIdx = InsectInfo.insectInfoIdx" +
                 " WHERE Insect.groupIdx = "+group;
-        ManageRes result = this.jdbcTemplate.queryForObject(sql,(rs,rowNum)->new ManageRes(
-                rs.getInt("insectIndex"),
-                group,
-                rs.getInt("insectInfoIdx"),
-                rs.getInt("family"),
-                rs.getString("sex"),
-                rs.getDouble("weight"),
-                rs.getDouble("size"),
-                rs.getDouble("recommendTemperature"),
-                rs.getDouble("recommendMoisture"),
-                rs.getBoolean("adult"),
-                rs.getString("image")
-        ));
+        List<Map<String,Object>> sqlResult = this.jdbcTemplate.queryForList(sql);
+        for(Map<String,Object> m : sqlResult){
+            result.add(new ManageRes(
+                    (int)m.get("insectIdx"),
+                    group,
+                    (int)m.get("insectInfoIdx"),
+                    (int)m.get("family"),
+                    (String)m.get("sex"),
+                    (double)m.get("weight"),
+                    (double)m.get("size"),
+                    (double)m.get("recommendTemperature"),
+                    (double)m.get("recommendMoisture"),
+                    (String)m.get("kind"),
+                    (int)m.get("adult"),
+                    (String)m.get("image")
+            ));
+        }
         return result;
     }
 }

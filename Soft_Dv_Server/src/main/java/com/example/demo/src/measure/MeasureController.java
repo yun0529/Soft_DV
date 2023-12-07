@@ -8,6 +8,9 @@ import com.example.demo.src.measure.model.ManageRes;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RequestMapping("/app/measure/")
 @Controller
 public class MeasureController {
@@ -52,9 +55,9 @@ public class MeasureController {
 
     @ResponseBody
     @GetMapping("manage")
-    public BaseResponse<ManageRes> manage(@RequestParam("group") int group){
+    public BaseResponse<List<ManageRes>> manage(@RequestParam("group") int group){
         try{
-            ManageRes result = measureService.manage(group);
+            List<ManageRes> result = measureService.manage(group);
             return new BaseResponse<>(result);
         }catch(BaseException e){
             return new BaseResponse<>(e.getStatus());

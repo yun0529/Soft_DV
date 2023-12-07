@@ -19,6 +19,7 @@ public class ManageRes {
     private double size;
     private double recommendTemperature;
     private double recommendMoisture;
-    private boolean adult;
+    private String kind;
+    private int adult;
     private String image;
 }
